@@ -1,0 +1,15 @@
+.cart-details{
+    padding:20px;
+    width:100%;
+}
+.review-button{
+    background-color: goldenrod;
+    height:30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+    width:100%;
+}
+.order-details{
+    text-align: center;
+}
