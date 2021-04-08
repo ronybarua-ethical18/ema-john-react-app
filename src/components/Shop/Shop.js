@@ -11,7 +11,7 @@ const Shop = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products?search=`+search)
+    fetch(`https://frozen-harbor-33735.herokuapp.com/products?search=`+search)
       .then(res => res.json())
       .then(data => setProducts(data))
   }, [search])
