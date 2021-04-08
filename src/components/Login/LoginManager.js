@@ -18,6 +18,7 @@ export const serviceProvider = (provider) => {
         .then((result) => {
             /** @type {firebase.auth.OAuthCredential} */
             var user = result.user;
+            setUserToken();
             return user;
         })
         .catch((error) => {
@@ -34,6 +35,7 @@ export const createUserWithEmailAndPassword = (name, email, password) => {
             newUserInfo.success = true;
             newUserInfo.error = '';
             updateUserInfo(name);
+            setUserToken();
             return newUserInfo;
         })
         .catch((error) => {
@@ -49,6 +51,7 @@ export const signInWithEmailAndPassword = (email, password) => {
             const newUserInfo = res.user;
             newUserInfo.success = true;
             newUserInfo.error = '';
+            setUserToken();
             return newUserInfo;
         })
         .catch((error) => {
@@ -68,6 +71,13 @@ const updateUserInfo = name => {
     }).catch(function (error) {
         console.log(error);
     });
+}
+const setUserToken = () =>{
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        sessionStorage.setItem('token', idToken);
+      }).catch(function(error) {
+        // Handle error
+      });
 }
 export const handleGoogleSignIn = () => {
    return serviceProvider(googleProvider);
